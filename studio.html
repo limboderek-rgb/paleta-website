@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio — Paleta Creatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E0D10;
+    --bg-soft: #17151A;
+    --ink: #F5F1EA;
+    --muted: #948F98;
+    --line: rgba(245,241,234,0.12);
+
+    --coffee: #D98E3E;
+    --concert: #E2447A;
+    --cosplay: #2FB6A6;
+    --mv: #7B6EF6;
+
+    --display: 'Fraunces', serif;
+    --body: 'Space Grotesk', sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width:100%; display:block; }
+  ::selection{ background: var(--mv); color: var(--bg); }
+
+  .page-ambient{
+    position: fixed; inset:0; z-index:-1; pointer-events:none;
+    background:
+      radial-gradient(700px circle at 6% 8%, rgba(217,142,62,0.10), transparent 65%),
+      radial-gradient(700px circle at 96% 18%, rgba(226,68,122,0.095), transparent 65%),
+      radial-gradient(700px circle at 10% 70%, rgba(47,182,166,0.095), transparent 65%),
+      radial-gradient(700px circle at 92% 92%, rgba(123,110,246,0.10), transparent 65%);
+  }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  /* NAV */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 50;
+    padding: 22px 0;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(14,13,16,0.85), transparent);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family: var(--display); font-weight:600; font-size: 1.15rem; letter-spacing: 0.01em; }
+  .logo em{ font-style: italic; font-weight: 400; color: var(--muted); }
+  .navlinks{ display:flex; gap: 32px; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .navlinks a{ transition: color .25s ease; }
+  .navlinks a:hover{ color: var(--ink); }
+  .navlinks a:focus-visible, a:focus-visible{ outline: 2px solid var(--mv); outline-offset: 3px; border-radius: 2px; }
+  .btn{
+    padding: 14px 26px; border-radius: 999px; font-size: 0.85rem;
+    letter-spacing: 0.04em; border: 1px solid var(--line);
+    transition: all .25s ease; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn.primary{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.primary:hover{ background: transparent; color: var(--ink); }
+  .btn.ghost:hover{ border-color: var(--ink); }
+
+  /* PAGE HERO */
+  .page-hero{ padding: 180px 0 80px; position: relative; overflow: hidden; }
+  .hero-blob{
+    position:absolute; border-radius: 50%;
+    filter: blur(90px); opacity: 0.35; z-index:0;
+    animation: drift 22s ease-in-out infinite;
+  }
+  .hb1{ width:420px; height:420px; background: var(--coffee); top:-100px; left:-100px; }
+  .hb2{ width:380px; height:380px; background: var(--concert); top:60px; right:-120px; animation-delay: -6s; }
+  .hb3{ width:320px; height:320px; background: var(--cosplay); bottom:-140px; left:25%; animation-delay: -12s; }
+  .hb4{ width:300px; height:300px; background: var(--mv); bottom:-100px; right:20%; animation-delay: -18s; }
+  @keyframes drift{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(30px,-20px) scale(1.08); }
+  }
+  .eyebrow{
+    position: relative; z-index:1;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 22px;
+    display:flex; align-items:center; gap: 10px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background: var(--concert); }
+  .page-hero h1{
+    position: relative; z-index:1;
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(2.2rem, 5.4vw, 4.4rem); line-height: 1.05;
+    max-width: 18ch;
+  }
+  .page-hero h1 em{ font-style: italic; font-weight: 400; }
+  .page-hero p{ position: relative; z-index:1; margin-top: 24px; max-width: 52ch; color: var(--muted); font-size: 1.05rem; }
+
+  /* SECTION HEAD (shared) */
+  .section-head{ margin-bottom: 56px; position: relative; z-index:1; }
+  .section-label{
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .section-title{
+    font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    max-width: 20ch;
+  }
+
+  /* PORTFOLIO — editorial masonry, photo + video */
+  .portfolio{ padding: 40px 0 140px; position: relative; overflow: hidden; }
+  .sb1{ width:260px; height:260px; top:-40px; right:-60px; }
+  .filter-tabs{ display:flex; gap:10px; margin-bottom: 44px; flex-wrap: wrap; }
+  .filter-btn{
+    padding: 11px 22px; border-radius: 999px; border: 1px solid var(--line);
+    background: transparent; color: var(--muted); font-family: var(--body);
+    font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;
+    cursor: pointer; transition: all .25s ease;
+  }
+  .filter-btn:hover{ color: var(--ink); border-color: var(--ink); }
+  .filter-btn.active{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .bento{ column-count: 3; column-gap: 14px; }
+  .bento-cell{
+    break-inside: avoid; margin-bottom: 14px; position: relative; overflow: hidden;
+    display:flex; align-items:flex-end; padding: 20px; cursor: pointer;
+    border-radius: 18px;
+  }
+  .bento-cell::before{ content:''; position:absolute; inset:0; opacity:0.92; transition: transform .6s ease; }
+  .bento-cell::after{
+    content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+    background: linear-gradient(to top, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.05) 55%, transparent 100%);
+  }
+  .bento-cell:hover::before{ transform: scale(1.06); }
+  .cell-img{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit: cover; z-index:0; transition: transform .6s ease;
+  }
+  .bento-cell:hover .cell-img{ transform: scale(1.06); }
+  .ar-square{ aspect-ratio: 1/1; }
+  .ar-tall{ aspect-ratio: 3/4; }
+  .ar-wide{ aspect-ratio: 4/3; }
+  .ar-portrait{ aspect-ratio: 2/3; }
+
+  .media-badge{
+    position:absolute; top:16px; left:16px; z-index:2;
+    padding: 6px 13px; border-radius: 999px;
+    background: rgba(14,13,16,0.55); backdrop-filter: blur(6px);
+    font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(245,241,234,0.92);
+  }
+  .cell-info{ position:relative; z-index:2; }
+  .cell-pillar{
+    display:block; font-size: 0.68rem; letter-spacing:0.08em; text-transform: uppercase;
+    color: rgba(245,241,234,0.65); margin-bottom: 4px;
+  }
+  .cell-title{ display:block; font-size: 0.92rem; color: rgba(255,255,255,0.95); }
+
+  @media (max-width: 900px){ .bento{ column-count: 2; } }
+  @media (max-width: 520px){ .bento{ column-count: 1; } }
+
+  .p1::before{ background: radial-gradient(circle at 30% 20%, #E8B067, #2A1B08); }
+  .p2::before{ background: radial-gradient(circle at 70% 30%, #F06B98, #34081A); }
+  .p3::before{ background: radial-gradient(circle at 50% 60%, #4FD6C4, #0A2E29); }
+  .p4::before{ background: radial-gradient(circle at 40% 40%, #9A8CFF, #1C1750); }
+  .p5::before{ background: radial-gradient(circle at 60% 20%, #F2C185, #40260A); }
+  .p6::before{ background: radial-gradient(circle at 30% 70%, #F58FB3, #3B0E22); }
+  .p7::before{ background: radial-gradient(circle at 45% 55%, #6FE0CE, #0E3B34); }
+  .p8::before{ background: radial-gradient(circle at 55% 35%, #B2A6FF, #292165); }
+  .p9::before{ background: radial-gradient(circle at 35% 45%, #D98E3E, #1E1406); }
+  .p10::before{ background: radial-gradient(circle at 65% 55%, #E2447A, #2A0714); }
+
+  .filter-row{ display:flex; gap:10px; flex-wrap: wrap; }
+  .filter-row + .filter-row{ margin-top: 12px; }
+  .filter-divider{ height:1px; background: var(--line); margin: 24px 0; }
+
+  .bento-cell.is-hidden{ display:none; }
+
+  .load-more-wrap{ display:flex; justify-content:center; margin-top: 40px; }
+  .load-more-btn{
+    padding: 13px 28px; border-radius: 999px; border: 1px solid var(--line);
+    background: transparent; color: var(--ink); font-family: var(--body);
+    font-size: 0.82rem; letter-spacing: 0.04em; cursor:pointer; transition: all .25s ease;
+  }
+  .load-more-btn:hover{ border-color: var(--ink); background: var(--ink); color: var(--bg); }
+  .load-more-wrap.is-done{ display:none; }
+
+  /* LIGHTBOX */
+  .lightbox{
+    position: fixed; inset:0; z-index: 100;
+    background: rgba(6,5,7,0.92); backdrop-filter: blur(6px);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition: opacity .3s ease;
+  }
+  .lightbox.is-open{ opacity:1; pointer-events:auto; }
+  .lightbox-inner{
+    position: relative; width: min(880px, 88vw); max-height: 90vh;
+    border-radius: 20px; overflow:hidden; display:flex; flex-direction:column;
+  }
+  .lightbox-media{
+    width:100%; max-height: 58vh; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--bg);
+  }
+  .lightbox-media img{
+    max-width:100%; max-height: 58vh; width:auto; height:auto;
+    object-fit: contain; display:block;
+  }
+  .lightbox-media video{
+    max-width:100%; max-height: 58vh; width:auto; height:auto;
+    object-fit: contain; display:block;
+  }
+  .lightbox-mute-btn{
+    position:absolute; bottom:14px; left:50%; transform:translateX(-50%); z-index:6;
+    width:38px; height:38px; border-radius:50%;
+    background: rgba(14,13,16,0.65); border:1px solid rgba(245,241,234,0.25);
+    color: var(--ink); font-size:1rem; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition: background .2s ease;
+  }
+  .lightbox-mute-btn:hover{ background: rgba(14,13,16,0.9); }
+  .lightbox-caption{
+    padding: 26px 28px; background: var(--bg-soft);
+  }
+  .lightbox-pillar{ font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--muted); margin-bottom:12px; }
+  .lightbox-title{ font-family: var(--display); font-size: 1.3rem; font-weight:500; }
+  .lightbox-close, .lightbox-prev, .lightbox-next{
+    position:absolute; z-index:5; width:42px; height:42px; border-radius:50%;
+    background: rgba(14,13,16,0.55); border:1px solid rgba(245,241,234,0.2);
+    color: var(--ink); font-size: 1.1rem; display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition: background .2s ease;
+  }
+  .lightbox-close:hover, .lightbox-prev:hover, .lightbox-next:hover{ background: rgba(14,13,16,0.85); }
+  .lightbox-close{ top:14px; right:14px; }
+  .lightbox-prev{ left:14px; top:50%; transform: translateY(-50%); }
+  .lightbox-next{ right:14px; top:50%; transform: translateY(-50%); }
+  @media (max-width: 600px){ .lightbox-inner{ width: 94vw; } }
+
+  /* TEAM */
+  .team{ padding: 40px 0 140px; border-top: 1px solid var(--line); position: relative; overflow: hidden; }
+  .sb2{ width:280px; height:280px; bottom:-60px; left:-70px; }
+
+  .team-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+  }
+
+  /* Ombre gradient border frame — padding technique for rounded gradient borders */
+  .member-frame{
+    padding: 3px; border-radius: 22px;
+  }
+  .mf1{ background: linear-gradient(150deg, var(--coffee), var(--concert)); }
+  .mf2{ background: linear-gradient(150deg, var(--concert), var(--cosplay)); }
+  .mf3{ background: linear-gradient(150deg, var(--cosplay), var(--mv)); }
+
+  .member{
+    position: relative; height: 460px; overflow:hidden;
+    display:flex; flex-direction:column; justify-content:flex-end; padding: 28px;
+    border-radius: 19px; background: var(--bg-soft);
+  }
+  .member::before{ content:''; position:absolute; inset:0; opacity:0.85; }
+  .m1::before{ background: linear-gradient(160deg, var(--coffee), #7A5220); }
+  .m2::before{ background: linear-gradient(160deg, var(--cosplay), #124F48); }
+  .m3::before{ background: linear-gradient(160deg, var(--mv), #362E85); }
+
+  .member-photo{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit: cover; object-position: top center;
+    filter: grayscale(1) contrast(1.05);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 78%);
+    mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 78%);
+    transition: transform .6s ease;
+  }
+  .member:hover .member-photo{ transform: scale(1.05); }
+
+  .member::after{
+    content:''; position:absolute; inset:0; z-index:1; pointer-events:none;
+    transition: background .4s ease;
+  }
+  .m1::after{ background: linear-gradient(to top, rgba(122,82,32,0.85) 0%, rgba(122,82,32,0.3) 42%, transparent 74%); }
+  .m2::after{ background: linear-gradient(to top, rgba(18,79,72,0.85) 0%, rgba(18,79,72,0.3) 42%, transparent 74%); }
+  .m3::after{ background: linear-gradient(to top, rgba(54,46,133,0.85) 0%, rgba(54,46,133,0.3) 42%, transparent 74%); }
+  .m1:hover::after{ background: linear-gradient(to top, rgba(122,82,32,0.94) 0%, rgba(122,82,32,0.5) 50%, transparent 84%); }
+  .m2:hover::after{ background: linear-gradient(to top, rgba(18,79,72,0.94) 0%, rgba(18,79,72,0.5) 50%, transparent 84%); }
+  .m3:hover::after{ background: linear-gradient(to top, rgba(54,46,133,0.94) 0%, rgba(54,46,133,0.5) 50%, transparent 84%); }
+
+  .member-role{
+    position: relative; z-index:2; font-size: 0.75rem; letter-spacing:0.1em;
+    text-transform: uppercase; color: rgba(245,241,234,0.75); margin-bottom: 6px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .role-dot{ width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+  .m1 .role-dot{ background: var(--coffee); }
+  .m2 .role-dot{ background: var(--cosplay); }
+  .m3 .role-dot{ background: var(--mv); }
+
+  .member-name{
+    position: relative; z-index:2;
+    font-family: var(--display); font-weight: 600; font-size: 1.6rem;
+    color: var(--ink); line-height: 1.1;
+  }
+  .member-desc{
+    position: relative; z-index:2;
+    font-size: 0.86rem; line-height: 1.55; color: rgba(245,241,234,0.85); max-width: 30ch;
+    opacity: 0; max-height: 0; overflow: hidden; margin-top: 0;
+    transition: opacity .4s ease, max-height .45s ease, margin-top .4s ease;
+  }
+  .member:hover .member-desc{
+    opacity: 1; max-height: 260px; margin-top: 10px;
+  }
+  @media (max-width: 900px){ .team-grid{ grid-template-columns: 1fr; } .member{ height: 320px; } }
+  @media (hover: none){
+    .member-desc{ opacity:1; max-height: none; margin-top:10px; }
+  }
+
+  /* FOOTER */
+  footer{ padding: 80px 0 50px; border-top: 1px solid var(--line); }
+  .foot-grid{ display:flex; justify-content: space-between; align-items:flex-end; gap: 40px; flex-wrap: wrap; }
+  .foot-title{ font-family: var(--display); font-weight:500; font-size: clamp(1.8rem, 4vw, 3rem); max-width: 14ch; }
+  .foot-links{ display:flex; flex-direction:column; gap: 10px; align-items: flex-end; }
+  .foot-links a{ font-size: 0.85rem; color: var(--muted); transition: color .2s ease; }
+  .foot-links a:hover{ color: var(--ink); }
+  .foot-bottom{
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line);
+    display:flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted);
+    flex-wrap: wrap; gap: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="page-ambient"></div>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <a class="logo" href="paleta-portfolio.html">PALETA <em>creatives</em></a>
+      <div class="navlinks">
+        <a href="paleta-portfolio.html">Home</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#team">Team</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> The studio</div>
+    <h1>The people and the work <em>behind the palette.</em></h1>
+    <p>This is where our portfolio lives.  The full range of what we shoot, and the three people behind every color of it.</p>
+  </div>
+</section>
+
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Portfolio</div>
+      <div class="section-title">Photography, film, and everything between.</div>
+    </div>
+    <div class="filter-row">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="photo">Photography</button>
+      <button class="filter-btn" data-filter="video">Video</button>
+    </div>
+    <div class="bento" id="bentoGrid" style="margin-top: 36px;">
+      <div class="bento-cell ar-portrait" data-type="video" data-pillar="brand">
+        <video class="cell-img" src="portfolio/brand-films-01.mp4" muted loop autoplay playsinline></video>
+        <div class="media-badge">Video · 0:27</div>
+        <div class="cell-info"><span class="cell-pillar">Brand Films</span><span class="cell-title">YEIZ — 01</span></div>
+      </div>
+      <div class="bento-cell ar-tall" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-001.jpg" alt="Ysla — vintage telephone portrait">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 01</span></div>
+      </div>
+      <div class="bento-cell ar-portrait" data-type="video" data-pillar="brand">
+        <video class="cell-img" src="portfolio/sound-motion-01.mp4" autoplay muted loop playsinline></video>
+        <div class="media-badge">Video · 0:15</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Altamirano Recovery — 01</span></div>
+      </div>
+      <div class="bento-cell ar-square" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-003.jpg" alt="Ysla — mirror portrait">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 02</span></div>
+      </div>
+      <div class="bento-cell ar-portrait" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-004.jpg" alt="Ysla — four poster bed">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 03</span></div>
+      </div>
+      <div class="bento-cell ar-square" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-007.jpg" alt="Ysla — mirror lean">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 04</span></div>
+      </div>
+      <div class="bento-cell ar-tall" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-009.jpg" alt="Ysla — kitchen portrait">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 05</span></div>
+      </div>
+      <div class="bento-cell ar-wide" data-type="video" data-pillar="character">
+        <div class="media-badge">Video · 0:31</div>
+        <div class="cell-info"><span class="cell-pillar">Character Films</span><span class="cell-title">Reveal Shot — 01</span></div>
+      </div>
+      <div class="bento-cell ar-portrait" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-010.jpg" alt="Ysla — staircase portrait">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 06</span></div>
+      </div>
+      <div class="bento-cell ar-square" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-013.jpg" alt="Ysla — quiet portrait">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 07</span></div>
+      </div>
+      <div class="bento-cell ar-tall" data-type="photo" data-pillar="sound">
+        <img class="cell-img" src="portfolio/sm-014.jpg" alt="Ysla — phone call scene">
+        <div class="media-badge">Photo</div>
+        <div class="cell-info"><span class="cell-pillar">Sound &amp; Motion</span><span class="cell-title">Ysla — 08</span></div>
+      </div>
+    </div>
+    <div class="load-more-wrap" id="loadMoreWrap">
+      <button class="load-more-btn" id="loadMoreBtn">Load more</button>
+    </div>
+  </div>
+</section>
+
+<section class="team" id="team">
+  <div class="wrap" style="padding-top:60px;">
+    <div class="section-head">
+      <div class="section-label">Meet the team</div>
+      <div class="section-title">Three people, one palette.</div>
+    </div>
+    <div class="team-grid">
+      <div class="member-frame mf1">
+        <div class="member m1">
+          <img class="member-photo" src="meet-the-team/christian.jpg" alt="Christian Alvez">
+          <div class="member-role"><span class="role-dot"></span>Creative Director</div>
+          <div class="member-name">Christian Alvez</div>
+          <div class="member-desc">Specializing in videography, photography and branding. He combines visual storytelling with thoughtful design to create work that captures attention and communicates with purpose. From cinematic films and striking imagery to digital identities and engaging websites, his work is built to make brands seen, felt and remembered.</div>
+        </div>
+      </div>
+      <div class="member-frame mf2">
+        <div class="member m2">
+          <img class="member-photo" src="meet-the-team/briggs.jpg" alt="Briggs Tameta">
+          <div class="member-role"><span class="role-dot"></span>Director of Photography</div>
+          <div class="member-name">Briggs Tameta</div>
+          <div class="member-desc">With a focus on cinematography, photography, video editing, color grading and branding. He creates visual work that goes beyond simply looking good. Every frame, color, cut, and design element is carefully crafted to communicate a story and give each brand its own distinct characters.</div>
+        </div>
+      </div>
+      <div class="member-frame mf3">
+        <div class="member m3">
+          <img class="member-photo" src="meet-the-team/derek.jpg" alt="Derek Limbo">
+          <div class="member-role"><span class="role-dot"></span>Project Manager</div>
+          <div class="member-name">Derek Limbo</div>
+          <div class="member-desc">Specializing in project management, SEO, digital marketing strategy and trend research. He oversees the planning and execution of creative projects from concept to completion. He keeps the team aligned, manages timelines and deliverables and stays ahead of emerging trends, viral content and audience behavior to develop marketing strategies that keep brands relevant and competitive.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" id="lightboxClose">✕</button>
+    <button class="lightbox-prev" id="lightboxPrev">‹</button>
+    <button class="lightbox-next" id="lightboxNext">›</button>
+    <div class="lightbox-media" id="lightboxMedia"></div>
+    <div class="lightbox-caption">
+      <div class="lightbox-pillar" id="lightboxPillar"></div>
+      <div class="lightbox-title" id="lightboxTitle"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-title">Let's make your color.</div>
+      <div class="foot-links">
+        <a href="https://instagram.com/paleta.creatives" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="mailto:hello@paletacreatives.com">hello@paletacreatives.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Paleta Creatives</span>
+      <span>A palette of stories, one hand behind every color.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+<script>
+(function(){
+  var typeBtns = document.querySelectorAll('[data-filter]');
+  var cells = Array.prototype.slice.call(document.querySelectorAll('.bento-cell'));
+  var loadMoreWrap = document.getElementById('loadMoreWrap');
+  var loadMoreBtn = document.getElementById('loadMoreBtn');
+  var PAGE_SIZE = 6;
+
+  var state = { type: 'all', shown: PAGE_SIZE };
+
+  function matches(cell){
+    var t = cell.getAttribute('data-type');
+    return (state.type === 'all' || t === state.type);
+  }
+
+  function render(){
+    var matched = cells.filter(matches);
+    matched.forEach(function(cell, i){
+      cell.classList.toggle('is-hidden', i >= state.shown);
+    });
+    cells.filter(function(c){ return !matches(c); }).forEach(function(c){ c.classList.add('is-hidden'); });
+
+    var remaining = matched.length - state.shown;
+    if(remaining > 0){
+      loadMoreWrap.classList.remove('is-done');
+      loadMoreBtn.textContent = 'Load more (' + remaining + ')';
+    } else {
+      loadMoreWrap.classList.add('is-done');
+    }
+  }
+
+  typeBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      typeBtns.forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      state.type = btn.getAttribute('data-filter');
+      state.shown = PAGE_SIZE;
+      render();
+    });
+  });
+
+  loadMoreBtn.addEventListener('click', function(){
+    state.shown += PAGE_SIZE;
+    render();
+  });
+
+  render();
+
+  /* Lightbox */
+  var lightbox = document.getElementById('lightbox');
+  var lbMedia = document.getElementById('lightboxMedia');
+  var lbPillar = document.getElementById('lightboxPillar');
+  var lbTitle = document.getElementById('lightboxTitle');
+  var lbClose = document.getElementById('lightboxClose');
+  var lbPrev = document.getElementById('lightboxPrev');
+  var lbNext = document.getElementById('lightboxNext');
+  var currentIndex = 0;
+  var currentSet = [];
+
+  function openLightbox(cell){
+    currentSet = cells.filter(matches);
+    currentIndex = currentSet.indexOf(cell);
+    paint();
+    lightbox.classList.add('is-open');
+  }
+  function paint(){
+    var cell = currentSet[currentIndex];
+    if(!cell) return;
+    lbMedia.innerHTML = '';
+    lbMedia.className = 'lightbox-media';
+    var mediaEl = cell.querySelector('.cell-img');
+    if(mediaEl){
+      if(mediaEl.tagName.toLowerCase() === 'video'){
+        var big = document.createElement('video');
+        big.src = mediaEl.currentSrc || mediaEl.getAttribute('src');
+        big.autoplay = true;
+        big.loop = true;
+        big.muted = true;
+        big.playsInline = true;
+        big.controls = false;
+        lbMedia.appendChild(big);
+
+        var muteBtn = document.createElement('button');
+        muteBtn.className = 'lightbox-mute-btn';
+        muteBtn.textContent = '🔇';
+        muteBtn.addEventListener('click', function(e){
+          e.stopPropagation();
+          big.muted = !big.muted;
+          muteBtn.textContent = big.muted ? '🔇' : '🔊';
+        });
+        lbMedia.appendChild(muteBtn);
+      } else {
+        var big = document.createElement('img');
+        big.src = mediaEl.src;
+        lbMedia.appendChild(big);
+      }
+    } else {
+      var colorClass = Array.prototype.find.call(cell.classList, function(c){ return /^p\d+$/.test(c); });
+      lbMedia.classList.add('bento-cell');
+      if(colorClass) lbMedia.classList.add(colorClass);
+    }
+    lbPillar.textContent = cell.querySelector('.cell-pillar').textContent + ' · ' + cell.querySelector('.media-badge').textContent;
+    lbTitle.textContent = cell.querySelector('.cell-title').textContent;
+  }
+  function closeLightbox(){ lightbox.classList.remove('is-open'); }
+  function next(){ currentIndex = (currentIndex + 1) % currentSet.length; paint(); }
+  function prev(){ currentIndex = (currentIndex - 1 + currentSet.length) % currentSet.length; paint(); }
+
+  cells.forEach(function(cell){
+    cell.addEventListener('click', function(){ openLightbox(cell); });
+  });
+  lbClose.addEventListener('click', closeLightbox);
+  lbNext.addEventListener('click', next);
+  lbPrev.addEventListener('click', prev);
+  lightbox.addEventListener('click', function(e){ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e){
+    if(!lightbox.classList.contains('is-open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowRight') next();
+    if(e.key === 'ArrowLeft') prev();
+  });
+})();
+</script>
+</html>

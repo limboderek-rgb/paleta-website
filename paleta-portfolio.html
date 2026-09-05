@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paleta Creatives</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0E0D10;
+    --bg-soft: #17151A;
+    --ink: #F5F1EA;
+    --muted: #948F98;
+    --line: rgba(245,241,234,0.12);
+
+    --coffee: #D98E3E;   /* Brand Films */
+    --concert: #E2447A;  /* Live Frames */
+    --cosplay: #2FB6A6;  /* Character Films */
+    --mv: #7B6EF6;       /* Sound & Motion */
+
+    --display: 'Fraunces', serif;
+    --body: 'Space Grotesk', sans-serif;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a{ color: inherit; text-decoration: none; }
+  img{ max-width:100%; display:block; }
+
+  ::selection{ background: var(--mv); color: var(--bg); }
+
+  .wrap{ max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+
+  /* NAV */
+  header{
+    position: fixed; top:0; left:0; right:0; z-index: 50;
+    padding: 22px 0;
+    backdrop-filter: blur(10px);
+    background: linear-gradient(to bottom, rgba(14,13,16,0.85), transparent);
+  }
+  nav{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-family: var(--display); font-weight:600; font-size: 1.15rem; letter-spacing: 0.01em; }
+  .logo em{ font-style: italic; font-weight: 400; color: var(--muted); }
+  .navlinks{ display:flex; gap: 32px; font-size: 0.82rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+  .navlinks a{ transition: color .25s ease; }
+  .navlinks a:hover{ color: var(--ink); }
+  .navlinks a:focus-visible, a:focus-visible{ outline: 2px solid var(--mv); outline-offset: 3px; border-radius: 2px; }
+
+  /* HERO */
+  .hero{
+    min-height: 100svh;
+    display:flex; flex-direction:column; justify-content:center;
+    position: relative;
+    padding-top: 120px; padding-bottom: 80px;
+  }
+  .hero-blob{
+    position:absolute; border-radius: 50%;
+    filter: blur(90px); opacity: 0.35; z-index:0;
+    animation: drift 22s ease-in-out infinite;
+  }
+  .b1{ width:420px; height:420px; background: var(--coffee); top:-80px; left:-100px; }
+  .b2{ width:380px; height:380px; background: var(--concert); top:120px; right:-120px; animation-delay: -6s; }
+  .b3{ width:320px; height:320px; background: var(--cosplay); bottom:-100px; left:20%; animation-delay: -12s; }
+  .b4{ width:300px; height:300px; background: var(--mv); bottom:-60px; right:15%; animation-delay: -18s; }
+  @keyframes drift{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    50%{ transform: translate(30px,-20px) scale(1.08); }
+  }
+
+  .eyebrow{
+    position: relative; z-index:1;
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 22px;
+    display:flex; align-items:center; gap: 10px;
+  }
+  .eyebrow .dot{ width:6px; height:6px; border-radius:50%; background: var(--concert); }
+
+  h1{
+    position: relative; z-index:1;
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(2.4rem, 6vw, 5.2rem);
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    max-width: 16ch;
+  }
+  h1 .accent{ font-style: italic; font-weight: 400; }
+
+  .hero-sub{
+    position: relative; z-index:1;
+    margin-top: 28px; max-width: 46ch;
+    color: var(--muted); font-size: 1.05rem;
+  }
+
+  .hero-cta{
+    position: relative; z-index:1;
+    margin-top: 44px; display:flex; gap:16px; flex-wrap: wrap;
+  }
+  .btn{
+    padding: 14px 26px; border-radius: 999px; font-size: 0.85rem;
+    letter-spacing: 0.04em; border: 1px solid var(--line);
+    transition: all .25s ease; display:inline-flex; align-items:center; gap:8px;
+  }
+  .btn.primary{ background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn.primary:hover{ background: transparent; color: var(--ink); }
+  .btn.ghost:hover{ border-color: var(--ink); }
+
+  /* PALETTE STRIP — signature element */
+  .palette-section{ padding: 100px 0 60px; position:relative; }
+  .section-head{ margin-bottom: 56px; }
+  .section-label{
+    font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted);
+    margin-bottom: 14px;
+  }
+  .section-title{
+    font-family: var(--display); font-weight: 500; font-size: clamp(1.6rem, 3.4vw, 2.6rem);
+    max-width: 20ch;
+  }
+
+  .palette{
+    display:flex; align-items:flex-end; gap: 4px;
+    border-radius: 28px; overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .swatch{
+    flex: 1; position: relative; height: 340px;
+    display:flex; flex-direction:column; justify-content:flex-end;
+    padding: 26px; cursor: pointer;
+    transition: flex-grow .5s cubic-bezier(.2,.8,.2,1);
+    overflow: hidden;
+  }
+  .swatch:hover{ flex-grow: 1.6; }
+  .swatch::before{
+    content:''; position:absolute; inset:0; opacity: 0.85;
+  }
+  .s1::before{ background: linear-gradient(160deg, var(--coffee), #7A5220); }
+  .s2::before{ background: linear-gradient(160deg, var(--concert), #6B1636); }
+  .s3::before{ background: linear-gradient(160deg, var(--cosplay), #124F48); }
+  .s4::before{ background: linear-gradient(160deg, var(--mv), #362E85); }
+
+  .swatch-index{
+    position: relative; z-index:1; font-size: 0.78rem; letter-spacing:0.1em;
+    color: rgba(255,255,255,0.75); margin-bottom: 90px;
+  }
+  .swatch-name{
+    position: relative; z-index:1;
+    font-family: var(--display); font-weight: 600; font-size: 1.5rem;
+    color: #0E0D10; line-height: 1.1; margin-bottom: 8px;
+  }
+  .swatch-desc{
+    position: relative; z-index:1;
+    font-size: 0.85rem; color: rgba(14,13,16,0.75);
+    max-width: 22ch; opacity: 0; transform: translateY(6px);
+    transition: all .35s ease;
+  }
+  .swatch:hover .swatch-desc{ opacity:1; transform: translateY(0); }
+
+  @media (max-width: 820px){
+    .palette{ flex-direction: column; }
+    .swatch{ height: 140px; }
+    .swatch:hover{ flex-grow: 1; }
+    .swatch-index{ margin-bottom: 30px; }
+    .swatch-desc{ opacity:1; transform:none; }
+  }
+
+  /* STATEMENT */
+  .statement{ padding: 140px 0 100px; }
+  .statement p{
+    font-family: var(--display); font-weight: 400; font-style: italic;
+    font-size: clamp(1.6rem, 3.6vw, 2.8rem); line-height: 1.35;
+    max-width: 22ch; color: var(--ink);
+  }
+  .statement p span{ color: var(--muted); font-style: normal; }
+
+  /* Studio link — palette-dot creative CTA */
+  .studio-link{
+    display:inline-flex; align-items:center; gap:16px;
+    margin-top: 46px; cursor: pointer;
+  }
+  .studio-link .dots{ display:flex; align-items:center; }
+  .studio-link .dots .dot{
+    width:11px; height:11px; border-radius:50%;
+    transition: margin-left .45s cubic-bezier(.2,.8,.2,1), transform .45s ease;
+    box-shadow: 0 0 0 0 transparent;
+  }
+  .studio-link .dots .dot:not(:first-child){ margin-left: 4px; }
+  .studio-link .dots .dot.d1{ background: var(--coffee); }
+  .studio-link .dots .dot.d2{ background: var(--concert); }
+  .studio-link .dots .dot.d3{ background: var(--cosplay); }
+  .studio-link .dots .dot.d4{ background: var(--mv); }
+  .studio-link:hover .dots .dot:not(:first-child){ margin-left: -5px; }
+  .studio-link:hover .dots .dot{ transform: scale(1.25); }
+  .studio-link .label{
+    position: relative; font-size: 0.95rem; letter-spacing: 0.02em; color: var(--ink);
+  }
+  .studio-link .label::after{
+    content:''; position:absolute; left:0; right:0; bottom:-5px; height:1px;
+    background: var(--ink); transform: scaleX(0); transform-origin: left;
+    transition: transform .4s ease;
+  }
+  .studio-link:hover .label::after{ transform: scaleX(1); }
+  .studio-link .arrow{ font-size: 1rem; transition: transform .35s ease; display:inline-block; }
+  .studio-link:hover .arrow{ transform: translateX(5px); }
+
+  /* WORK */
+  .work{ padding: 20px 0 120px; }
+
+  .work-feature{
+    position: relative; border-radius: 22px; overflow: hidden;
+    aspect-ratio: 21/9; margin-bottom: 20px;
+    --glow: var(--mv);
+    transition: box-shadow .5s ease;
+  }
+  .work-feature:hover{ box-shadow: 0 0 0 1px var(--glow), 0 0 60px -14px var(--glow); }
+  .feature-video{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .feature-shade{
+    position:absolute; inset:0; z-index:1;
+    background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 45%, transparent 75%);
+  }
+  .feature-glow{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background: radial-gradient(circle at 88% 12%, var(--glow), transparent 60%);
+    opacity:0; transition: opacity .5s ease; mix-blend-mode: screen;
+  }
+  .work-feature:hover .feature-glow{ opacity: 0.5; }
+  .feature-info{ position:absolute; left:28px; bottom:24px; z-index:2; }
+  .feature-pillar{
+    display:block; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase;
+    color: rgba(245,241,234,0.75); margin-bottom:8px;
+  }
+  .feature-title{
+    font-family: var(--display); font-weight:500; font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+    color: #fff;
+  }
+  .feature-badge{
+    position:absolute; top:20px; left:24px; z-index:2;
+    padding: 6px 13px; border-radius: 999px;
+    background: rgba(14,13,16,0.55); backdrop-filter: blur(6px);
+    font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: rgba(245,241,234,0.92);
+  }
+  @media (max-width: 720px){ .work-feature{ aspect-ratio: 4/3; } }
+
+  .grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+  }
+  .cell{
+    aspect-ratio: 4/5; position: relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding: 20px;
+    transition: box-shadow .5s ease, border-radius .3s ease;
+    border-radius: 4px;
+  }
+  .cell:hover{ box-shadow: 0 0 0 1px var(--glow), 0 0 46px -12px var(--glow); }
+  .cell::before{ content:''; position:absolute; inset:0; opacity:0.9; transition: transform .6s ease; }
+  .cell:hover::before{ transform: scale(1.08); }
+  .cell-glow{
+    position:absolute; inset:0; z-index:1; pointer-events:none;
+    background: radial-gradient(circle at 85% 15%, var(--glow), transparent 62%);
+    opacity:0; transition: opacity .45s ease; mix-blend-mode: screen;
+  }
+  .cell:hover .cell-glow{ opacity: 0.55; }
+  .cell span{ position:relative; z-index:2; font-size:0.85rem; letter-spacing:0.04em; color: rgba(255,255,255,0.92); }
+  .cell-video{
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit: cover; z-index:0; transition: transform .6s ease;
+  }
+  .cell:hover .cell-video{ transform: scale(1.08); }
+  .cell-shade{
+    position:absolute; inset:0; z-index:1;
+    background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 55%, transparent 100%);
+  }
+  .c1{ --glow: var(--coffee); }
+  .c2{ --glow: var(--concert); }
+  .c3{ --glow: var(--cosplay); }
+  .c5{ --glow: var(--coffee); }
+  .c6{ --glow: var(--concert); }
+  .c1::before{ background: radial-gradient(circle at 30% 20%, #E8B067, #2A1B08); }
+  .c2::before{ background: radial-gradient(circle at 70% 30%, #F06B98, #34081A); }
+  .c3::before{ background: radial-gradient(circle at 50% 60%, #4FD6C4, #0A2E29); }
+  .c5::before{ background: radial-gradient(circle at 60% 20%, #E8B067, #1D1206); }
+  .c6::before{ background: radial-gradient(circle at 30% 70%, #F06B98, #240611); }
+  @media (max-width: 720px){ .grid{ grid-template-columns: repeat(2,1fr); } }
+
+  /* FOOTER */
+  footer{ padding: 80px 0 50px; border-top: 1px solid var(--line); }
+  .foot-grid{ display:flex; justify-content: space-between; align-items:flex-end; gap: 40px; flex-wrap: wrap; }
+  .foot-title{
+    font-family: var(--display); font-weight:500; font-size: clamp(1.8rem, 4vw, 3rem);
+    max-width: 14ch;
+  }
+  .foot-links{ display:flex; flex-direction:column; gap: 10px; align-items: flex-end; }
+  .foot-links a{ font-size: 0.85rem; color: var(--muted); transition: color .2s ease; }
+  .foot-links a:hover{ color: var(--ink); }
+  .foot-bottom{
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line);
+    display:flex; justify-content: space-between; font-size: 0.75rem; color: var(--muted);
+    flex-wrap: wrap; gap: 10px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo">PALETA <em>creatives</em></div>
+      <div class="navlinks">
+        <a href="#palette">Work</a>
+        <a href="studio.html">Studio</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="hero-blob b3"></div>
+  <div class="hero-blob b4"></div>
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Content studio</div>
+    <h1>Every color of creativity,<br><span class="accent">one studio.</span></h1>
+    <p class="hero-sub">Paleta Creatives builds cinematic work across brand films, live events, character content, and music visuals — different colors, one hand behind all of them.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="#palette">See the work</a>
+      <a class="btn ghost" href="#contact">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<section class="palette-section" id="palette">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">What we shoot</div>
+      <div class="section-title">Four colors. One palette.</div>
+    </div>
+    <div class="palette">
+      <div class="swatch s1">
+        <div class="swatch-index">01</div>
+        <div class="swatch-name">Brand Films</div>
+        <div class="swatch-desc">Product shoots, crafted like short films.</div>
+      </div>
+      <div class="swatch s2">
+        <div class="swatch-index">02</div>
+        <div class="swatch-name">Live Frames</div>
+        <div class="swatch-desc">Events & concerts, captured at their peak moment.</div>
+      </div>
+      <div class="swatch s3">
+        <div class="swatch-index">03</div>
+        <div class="swatch-name">Character Films</div>
+        <div class="swatch-desc">Cosplay shot with the weight of real cinema.</div>
+      </div>
+      <div class="swatch s4">
+        <div class="swatch-index">04</div>
+        <div class="swatch-name">Sound & Motion</div>
+        <div class="swatch-desc">Music videos & reels built for rhythm and reveal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="statement" id="statement">
+  <div class="wrap">
+    <p>We don't shoot one thing. <span>We shoot everything — our way, in our own colors.</span></p>
+    <a class="studio-link" href="studio.html">
+      <span class="dots">
+        <span class="dot d1"></span>
+        <span class="dot d2"></span>
+        <span class="dot d3"></span>
+        <span class="dot d4"></span>
+      </span>
+      <span class="label">Meet the Studio</span>
+      <span class="arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<section class="work">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="section-label">Selected work</div>
+      <div class="section-title">A few frames from the palette.</div>
+    </div>
+
+    <div class="work-feature">
+      <video class="feature-video" src="frames/sound-motion-01.mp4" autoplay muted loop playsinline></video>
+      <div class="feature-shade"></div>
+      <div class="feature-glow"></div>
+      <div class="feature-badge">Featured</div>
+      <div class="feature-info">
+        <span class="feature-pillar">Sound &amp; Motion</span>
+        <span class="feature-title">Altamirano Recovery — 01</span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="cell c1"><div class="cell-glow"></div><span>Brand Films — 01</span></div>
+      <div class="cell c2"><div class="cell-glow"></div><span>Live Frames — 01</span></div>
+      <div class="cell c3"><div class="cell-glow"></div><span>Character Films — 01</span></div>
+      <div class="cell c5"><div class="cell-glow"></div><span>Brand Films — 02</span></div>
+      <div class="cell c6"><div class="cell-glow"></div><span>Live Frames — 02</span></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-title">Let's make your color.</div>
+      <div class="foot-links">
+        <a href="https://instagram.com" target="_blank" rel="noopener">Instagram ↗</a>
+        <a href="#" target="_blank" rel="noopener">Portfolio / Linktree ↗</a>
+        <a href="mailto:hello@paletacreatives.com">hello@paletacreatives.com</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Paleta Creatives</span>
+      <span>A palette of stories, one hand behind every color.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Any future video cells in the small grid marked with class "hover-play" will
+  // play only on hover (not autoplay), and pause + reset when the mouse leaves.
+  document.querySelectorAll('.cell .hover-play').forEach(function(vid){
+    vid.removeAttribute('autoplay');
+    vid.pause();
+    var cell = vid.closest('.cell');
+    if(!cell) return;
+    cell.addEventListener('mouseenter', function(){ vid.play().catch(function(){}); });
+    cell.addEventListener('mouseleave', function(){ vid.pause(); vid.currentTime = 0; });
+  });
+</script>
+
+</body>
+</html>
